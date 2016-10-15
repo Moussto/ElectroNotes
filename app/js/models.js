@@ -4,7 +4,6 @@
 
 
 
-
 var NoteModel = Backbone.Model.extend({
 
 	defaults: {
@@ -15,33 +14,12 @@ var NoteModel = Backbone.Model.extend({
 	},
 	idAttribute: "id",
 
-});
-
-var NoteEntryView = Backbone.View.extend({
-	template: _.template($('#NoteEntryTemplate').html()),
-
-	events: {
-	//	"click .media-body" : "chosen"
-	},
-
-	initialize: function () {
-		//this.model.on('change', this.render, this);
-		this.render();
-
-	},
-	render: function () {
-		this.$el.append(this.template(this.model.toJSON()));
-		var that = this;
-		$('#Note'+this.model.id).click(function(){
-			that.chosen();
-		});
-	},
-
-	chosen: function () {
-		console.log(this.model);
+	save : function (str) {
+		this.set('value', str);
 	}
 
 });
+
 
 var NoteEntryView = Backbone.View.extend({
 	template: _.template($('#NoteEntryTemplate').html()),
@@ -64,34 +42,34 @@ var NoteEntryView = Backbone.View.extend({
 	},
 
 	chosen: function () {
-		$("#writingpane").val(this.model.get("value"));
+		new NoteView({model:this.model, el: $("#wrap")});
 	}
 
 });
 
 var NoteView = Backbone.View.extend({
-	template: _.template("<div id=#<%= id %></div>"),
-
-	events: {
-		//	"click .media-body" : "chosen"
-	},
+	template: _.template($('#WritingTemplate').html()),
 
 	initialize: function () {
-		//this.model.on('change', this.render, this);
 		this.render();
 
 	},
 	render: function () {
-		var el = $("#writingpane");
-		this.el.append(this.template(this.model.toJSON()));
 		var that = this;
-		$('#Note'+this.model.id).click(function(){
-			that.chosen();
+		this.$el.html(this.template(this.model.toJSON()));
+		$('#ButtonSave'+this.model.id).click(function(){
+			that.save();
 		});
 	},
 
-	chosen: function () {
-		$("#writingpane").val(this.model.get("value"));
+	save:function () {
+
+		var text = $("#writingpane").val();
+		console.log(this.model.get("value"));
+		this.model.save(text);
+		console.log(this.model.get("value"));
+
 	}
+
 
 });
