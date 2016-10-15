@@ -1,0 +1,41 @@
+{
+  "name": "electronotes",
+  "productName": "Electronotes",
+  "version": "0.0.0",
+  "description": "My phenomenal app",
+  "license": "MIT",
+  "repository": "SahelianHijazi/electronotes",
+  "author": {
+    "name": "SahelianHijazi",
+    "email": "moustapha.agack@gmail.com",
+    "url": "github.com/SahelianHijazi"
+  },
+  "main": "app/index.js",
+  "scripts": {
+    "test": "xo",
+    "start": "electron .",
+    "build": "electron-packager . --out=dist --asar --overwrite --all"
+  },
+  "keywords": [
+    "electron-app",
+    "electron"
+  ],
+  "dependencies": {
+    "backbone": "^1.3.3",
+    "electron-debug": "^1.0.0",
+    "jquery": "^3.1.1"
+  },
+  "devDependencies": {
+    "devtron": "^1.1.0",
+    "electron-packager": "^8.0.0",
+    "electron": "^1.3.3",
+    "xo": "^0.16.0"
+  },
+  "xo": {
+    "esnext": true,
+    "envs": [
+      "node",
+      "browser"
+    ]
+  }
+}
