@@ -18,24 +18,80 @@ var NoteModel = Backbone.Model.extend({
 });
 
 var NoteEntryView = Backbone.View.extend({
-	template: _.template($('.NoteEntryTemplate').html()),
+	template: _.template($('#NoteEntryTemplate').html()),
 
 	events: {
-		"click .media-body" : "chosen"
+	//	"click .media-body" : "chosen"
 	},
 
 	initialize: function () {
-		this.model.on('change', this.render, this);
+		//this.model.on('change', this.render, this);
 		this.render();
+
 	},
 	render: function () {
 		this.$el.append(this.template(this.model.toJSON()));
+		var that = this;
+		$('#Note'+this.model.id).click(function(){
+			that.chosen();
+		});
 	},
 
 	chosen: function () {
-		console.log("bim");
-		console.log(this.model.toJSON());
+		console.log(this.model);
 	}
 
 });
 
+var NoteEntryView = Backbone.View.extend({
+	template: _.template($('#NoteEntryTemplate').html()),
+
+	events: {
+		//	"click .media-body" : "chosen"
+	},
+
+	initialize: function () {
+		//this.model.on('change', this.render, this);
+		this.render();
+
+	},
+	render: function () {
+		this.$el.append(this.template(this.model.toJSON()));
+		var that = this;
+		$('#Note'+this.model.id).click(function(){
+			that.chosen();
+		});
+	},
+
+	chosen: function () {
+		$("#writingpane").val(this.model.get("value"));
+	}
+
+});
+
+var NoteView = Backbone.View.extend({
+	template: _.template("<div id=#<%= id %></div>"),
+
+	events: {
+		//	"click .media-body" : "chosen"
+	},
+
+	initialize: function () {
+		//this.model.on('change', this.render, this);
+		this.render();
+
+	},
+	render: function () {
+		var el = $("#writingpane");
+		this.el.append(this.template(this.model.toJSON()));
+		var that = this;
+		$('#Note'+this.model.id).click(function(){
+			that.chosen();
+		});
+	},
+
+	chosen: function () {
+		$("#writingpane").val(this.model.get("value"));
+	}
+
+});

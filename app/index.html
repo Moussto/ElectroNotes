@@ -2,7 +2,7 @@
 <html>
 
 <script type="text/template" id="NoteEntryTemplate">
-	<li class="list-group-item" >
+	<li class="list-group-item" id="Note<%= id %>" >
 		<div class="media-body">
 			<strong><%= title %></strong>
 			<p><%= teaser %></p>
@@ -55,18 +55,26 @@
 			</div>
 
 			<div class="pane" id="wrap">
-					<textarea name="textarea">Write something here</textarea>
+					<textarea name="textarea" id="writingpane">Write something here</textarea>
 			</div>
 
 		</div>
 	</div>
+
+	<footer class="toolbar toolbar-footer">
+		<div class="toolbar-actions">
+			<button class="btn btn-primary pull-right">
+				Save
+			</button>
+		</div>
+	</footer>
 </div>
 </div>
 
 	<script>
 
 		var n1 = new NoteModel({id:"1", title:"YEAH", value:"beaucoupde texte et encore", teaser:"beaucou..."});
-		var n2 = new NoteModel({id:"2", title:"Bon debut", value:"beaucoupde texte et encore", teaser:"beaucoup..."});
+		var n2 = new NoteModel({id:"2", title:"Bon debut", value:"bBOBOBOB HOBOBOB BOBOB", teaser:"beaucoup..."});
 		var n1v = new NoteEntryView({model:n1,el: $("#ulentries")});
 		var n2v =new NoteEntryView({model:n2,el: $("#ulentries")});
 
