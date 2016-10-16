@@ -58,12 +58,6 @@
 							<p>Lorem ipsum dolor sit amet.</p>
 						</div>
 					</li>
-					<li class="list-group-item">
-						<div class="media-body">
-							<strong>List item title</strong>
-							<p>Lorem ipsum dolor sit amet.</p>
-						</div>
-					</li>
 				</ul>
 			</div>
 
@@ -81,11 +75,12 @@
 </div>
 
 	<script>
-
 		var n1 = new NoteModel({id:"1", title:"YEAH", value:"beaucoupde texte et encore", teaser:"beaucou..."});
 		var n2 = new NoteModel({id:"2", title:"Bon debut", value:"bBOBOBOB HOBOBOB BOBOB", teaser:"beaucoup..."});
-		var n1v = new NoteEntryView({model:n1,el: $("#ulentries")});
-		var n2v =new NoteEntryView({model:n2,el: $("#ulentries")});
+		var NoteC = new NoteCollection([n1,n2]);
+		new NoteCollectionView({collection:NoteC});
+		//var n1v = new NoteEntryView({model:n1,el: $("#ulentries")});
+		//var n2v =new NoteEntryView({model:n2,el: $("#ulentries")});
 
 
 	</script>
